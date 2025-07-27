@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 
 egui = "0.32.0"
-egui_extras = "0.32.0"
+egui_extras = { version = "0.32.0", features = ["image"] }
 
 eframe = "0.32.0"
 

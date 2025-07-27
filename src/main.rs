@@ -17,7 +17,12 @@ fn main() -> eframe::Result {
         options,
         Box::new(|cc| {
 
+            //La fuente
             setup_custom_fonts(&cc.egui_ctx);
+            
+            //Imágenes
+            egui_extras::install_image_loaders(&cc.egui_ctx);
+
             Ok(Box::<MyApp>::default())
         }),
     )

@@ -19,8 +19,9 @@ impl eframe::App for MyApp {
                 ui.label(RichText::new("¡Elige uno!").font(FontId::new(30.0, FontFamily::Proportional)),);
             });
 
-
-
+            ui.with_layout(egui::Layout::top_down(egui::Align::Center), |ui| {
+             ui.image(egui::include_image!("../assets/img/fondo_general.jpg"));
+            });
 
         });
     
