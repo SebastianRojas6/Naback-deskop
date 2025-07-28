@@ -10,11 +10,12 @@ impl Default for MyApp {
     }
 }
 
-
 impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-
+            
+            // Por cambiar 
+            
             ui.with_layout(egui::Layout::top_down(egui::Align::Center), |ui| {
                 ui.label(RichText::new("¡Elige uno!").font(FontId::new(30.0, FontFamily::Proportional)),);
             });
