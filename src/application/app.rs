@@ -1,11 +1,17 @@
-use egui::{RichText, FontId, FontFamily};
 use std::{cell::Cell, rc::Rc};
+
+pub enum AppState{
+    Menu,
+    //Game,
+    //Cards,
+    //Photos,
+}
 
 pub struct MyApp {
     _value: Rc<Cell<u32>>,
     _spin: bool,
     _blinky: bool,
-
+    state : AppState,
 }
 
 impl Default for MyApp {
@@ -14,28 +20,20 @@ impl Default for MyApp {
             _value: Rc::new(Cell::new(42)),
             _spin: false,
             _blinky: false,
+            state: AppState::Menu,
         }
     }
 }
 
 impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        egui::CentralPanel::default().show(ctx, |ui| {
             
-            // Por cambiar 
-            
-            ui.with_layout(egui::Layout::top_down(egui::Align::Center), |ui| {
-                ui.label(RichText::new("¡Elige uno!").font(FontId::new(30.0, FontFamily::Proportional)),);
-            });
+            match self.state {
 
-            ui.with_layout(egui::Layout::top_down(egui::Align::Center), |ui| {
-            ui.image(egui::include_image!("../../assets/img/fondo_general.jpg"));
-            });
+                AppState::Menu => self.mostrar_menu(ctx),   
 
-        });
-    
-    
-    
+            }
+
     }
 
 }

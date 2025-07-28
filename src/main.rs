@@ -1,10 +1,8 @@
-mod font;
-mod application;
-
 use eframe::{egui,UserEvent};
-use font::{replace_fonts,add_font};
 use winit::event_loop::{ControlFlow, EventLoop};
-use application::app::MyApp;
+
+use naback_deskop::application::font::{replace_fonts,add_font};
+use naback_deskop::application::app::MyApp;
 
 fn main() -> eframe::Result<()> {
     let options = eframe::NativeOptions {

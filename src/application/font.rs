@@ -1,13 +1,10 @@
-use eframe::{
-    egui,
-    epaint::text::{FontInsert, InsertFontFamily},
-};
+use eframe::{egui,epaint::text::{FontInsert, InsertFontFamily}};
 
 pub fn add_font(ctx: &egui::Context) {
     ctx.add_font(FontInsert::new(
         "Minecraft",
         egui::FontData::from_static(include_bytes!(
-            "../assets/font/Minecraft.ttf"
+            "../../assets/font/Minecraft.ttf"
         )),
         vec![
             InsertFontFamily {
@@ -28,7 +25,7 @@ pub fn replace_fonts(ctx: &egui::Context) {
     fonts.font_data.insert(
         "my_font".to_owned(),
         std::sync::Arc::new(egui::FontData::from_static(include_bytes!(
-            "../assets/font/Minecraft.ttf"
+            "../../assets/font/Minecraft.ttf"
         ))),
     );
 
