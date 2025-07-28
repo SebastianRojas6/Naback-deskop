@@ -1,25 +1,50 @@
-use egui::{FontDefinitions, FontFamily, FontData};
+use eframe::{
+    egui,
+    epaint::text::{FontInsert, InsertFontFamily},
+};
 
-pub fn setup_custom_fonts(ctx: &egui::Context) {
+pub fn add_font(ctx: &egui::Context) {
+    ctx.add_font(FontInsert::new(
+        "Minecraft",
+        egui::FontData::from_static(include_bytes!(
+            "../assets/font/Minecraft.ttf"
+        )),
+        vec![
+            InsertFontFamily {
+                family: egui::FontFamily::Proportional,
+                priority: egui::epaint::text::FontPriority::Highest,
+            },
+            InsertFontFamily {
+                family: egui::FontFamily::Monospace,
+                priority: egui::epaint::text::FontPriority::Lowest,
+            },
+        ],
+    ));
+}
 
-    let mut fonts = FontDefinitions::default();
+pub fn replace_fonts(ctx: &egui::Context) {
+    let mut fonts = egui::FontDefinitions::default();
 
     fonts.font_data.insert(
-        "Minecraft".to_owned(),
-        FontData::from_static(include_bytes!("../assets/font/Minecraft.ttf")).into(),
+        "my_font".to_owned(),
+        std::sync::Arc::new(egui::FontData::from_static(include_bytes!(
+            "../assets/font/Minecraft.ttf"
+        ))),
     );
 
-   fonts
+    fonts
         .families
-        .entry(FontFamily::Proportional)
+        .entry(egui::FontFamily::Proportional)
         .or_default()
         .insert(0, "Minecraft".to_owned());
 
     fonts
         .families
-        .entry(FontFamily::Monospace)
+        .entry(egui::FontFamily::Monospace)
         .or_default()
-        .insert(0, "Minecraft".to_owned());
+        .push("Minecraft".to_owned());
 
     ctx.set_fonts(fonts);
 }
+
+

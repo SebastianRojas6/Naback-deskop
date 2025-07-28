@@ -1,11 +1,19 @@
 use egui::{RichText, FontId, FontFamily};
+use std::{cell::Cell, rc::Rc};
 
-pub struct MyApp {}
+pub struct MyApp {
+    _value: Rc<Cell<u32>>,
+    _spin: bool,
+    _blinky: bool,
 
+}
 
 impl Default for MyApp {
     fn default() -> Self {
         Self {
+            _value: Rc::new(Cell::new(42)),
+            _spin: false,
+            _blinky: false,
         }
     }
 }
@@ -21,7 +29,7 @@ impl eframe::App for MyApp {
             });
 
             ui.with_layout(egui::Layout::top_down(egui::Align::Center), |ui| {
-             ui.image(egui::include_image!("../assets/img/fondo_general.jpg"));
+            ui.image(egui::include_image!("../../assets/img/fondo_general.jpg"));
             });
 
         });

@@ -7,8 +7,10 @@ edition = "2024"
 
 egui = "0.32.0"
 egui_extras = { version = "0.32.0", features = ["image"] }
-
 eframe = "0.32.0"
+
+image = "0.25.6"
+winit = "0.30.12"
 
 env_logger = { version = "0.11.8", default-features = false, features = [
     "auto-color",
