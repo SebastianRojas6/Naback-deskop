@@ -1,0 +1,46 @@
+import {Background} from "background.slint";
+
+export component Cards inherits Background {
+    Text {
+        text: "Cartas";
+        color: #37383F;
+        font-size: 70px;
+        font-family: "Minecraft";
+        height: parent.height * 0.90;
+    }
+
+    HorizontalLayout {
+        
+
+        Rectangle {
+            clip: true;
+
+            Image {
+
+                source: @image-url("../assets/img/cuadro.png");
+                height: parent.height;
+                y: (parent.height - self.height) / 2 - 40px;
+            }
+        }
+
+        Rectangle {
+            clip: true;
+            Image {
+
+                source: @image-url("../assets/img/cuadro.png");
+                height: parent.height;
+                y: (parent.height - self.height) / 2 - 40px;
+            }
+        }
+
+        Rectangle {
+            clip: true;
+            Image {
+
+                source: @image-url("../assets/img/cuadro.png");
+                height: parent.height;
+                y: (parent.height - self.height) / 2 - 40px;
+            }
+        }
+    }
+}

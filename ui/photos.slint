@@ -1,0 +1,26 @@
+import {Background} from "background.slint";
+
+export component Photos inherits Background {
+
+    Text {
+        text: "¡Fotos!";
+        color: #37383F;
+        font-size: 70px;
+        font-family: "Minecraft";
+        height: parent.height * 0.90;
+    }
+
+    Rectangle {
+        border-radius: 30px;
+        width: parent.width * 0.16;
+        height: parent.height * 0.12;
+        x: (parent.width - self.width) / 2;
+        y: (parent.height - self.height) / 2;
+        clip: true;
+
+        Image {
+            source: @image-url("../assets/img/cuy.png");
+
+        }
+    }
+}

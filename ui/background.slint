@@ -10,10 +10,12 @@ export component Background inherits Window {
         y: (parent.height - self.height)/ 2;
         clip : true;
 
-            Image {
+        Image {
             source: @image-url("../assets/img/fondo_general.png");
             width: parent.width;
-            height: parent.height;}
+            height: parent.height;
+            
+        }
 
         @children
     }
