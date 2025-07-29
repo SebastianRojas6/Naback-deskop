@@ -10,17 +10,94 @@ export component Photos inherits Background {
         height: parent.height * 0.90;
     }
 
-    Rectangle {
-        border-radius: 30px;
-        width: parent.width * 0.16;
-        height: parent.height * 0.12;
-        x: (parent.width - self.width) / 2;
-        y: (parent.height - self.height) / 2;
-        clip: true;
+    VerticalLayout {
 
-        Image {
-            source: @image-url("../assets/img/cuy.png");
+        padding-top: parent.height * 0.08;
 
+        spacing: -50px;
+        padding: 25px;
+
+        HorizontalLayout {
+
+            spacing: 20px;
+            padding: 30px;
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/ferris.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
+
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/ferris.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
+
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/cuy.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
+        }
+
+        HorizontalLayout {
+
+            spacing: 20px;
+            padding: 30px;
+
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/cuy.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
+
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/cuy.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
+
+            Rectangle {
+                border-color: black;
+                border-width: 2px;
+                border-radius: 15px;
+                clip: true;
+                Image {
+                    source: @image-url("../assets/img/cuy.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+            }
         }
     }
 }
