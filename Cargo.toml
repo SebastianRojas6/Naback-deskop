@@ -4,15 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+rand = "0.8"
+slint = "1.12.1"
 
-egui = "0.32.0"
-egui_extras = { version = "0.32.0", features = ["image"] }
-eframe = "0.32.0"
-
-image = "0.25.6"
-winit = "0.30.12"
-
-env_logger = { version = "0.11.8", default-features = false, features = [
-    "auto-color",
-    "humantime",
-] }
+[build-dependencies]
+slint-build = "1.12.1"
