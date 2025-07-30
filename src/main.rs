@@ -1,36 +1,16 @@
 slint::include_modules!();
 
+mod screens;
+use screens::eleccion;
+
 fn main() -> Result<(), slint::PlatformError> {
 
-    let menu = Menu::new()?; 
-    let photos = Photos::new()?;
-    let cards = Cards::new()?;
-    let game = Game::new()?;
-
+    println!("0: Menú, 1: Fotos, 2: Cartas, 3: Juego");
 
     let mut x = String::new();
     std::io::stdin().read_line(&mut x).expect("Error");
-    let x_int : i32 = x.trim().parse().expect("Error"); 
+    let x_int: i32 = x.trim().parse().expect("Error");
 
-    if x_int == 1 {
-
-        menu.run()
-    } 
-
-    else if x_int == 2{
-        photos.run()
-    }
-
-    else if x_int == 3{
-        cards.run()
-    }
-
-    else if x_int == 4 {
-        game.run()
-    }
-
-    else{
-        menu.run()
-    }
-
+    let pantalla = eleccion(x_int);
+    pantalla.mostrar()
 }

@@ -8,4 +8,49 @@ export component Menu inherits Background {
         font-family: "Minecraft";
         height: parent.height * 0.90;
     }
+
+    Rectangle {
+
+        clip: true;
+
+        Image {
+            height: parent.height * 1.4;
+            width: parent.width;
+            source: @image-url("../assets/img/carta.png");
+        }
+
+        VerticalLayout {
+            alignment: center;
+
+            HorizontalLayout {
+                x: parent.width - self.width - parent.width * 0.05;
+                alignment: center;
+
+                spacing: parent.width * 0.1;
+                padding: parent.width * 0.05;
+                width: parent.width * 0.9;
+
+                Rectangle {
+                    width: parent.width * 0.15;
+                    height: self.width;
+                    border-radius: self.width / 2;
+                    background: blue;
+                }
+
+                Rectangle {
+                    width: parent.width * 0.15;
+                    height: self.width;
+                    border-radius: self.width / 2;
+                    background: red;
+                }
+
+                Rectangle {
+                    width: parent.width * 0.15;
+                    height: self.width;
+                    border-radius: self.width / 2;
+                    background: green;
+                }
+            }
+        }
+    }
 }

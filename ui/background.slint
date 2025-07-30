@@ -7,17 +7,15 @@ export component Background inherits Window {
         width: parent.width * 0.96;
         height: parent.height * 0.92;
         x: (parent.width - self.width) / 2;
-        y: (parent.height - self.height)/ 2;
-        clip : true;
+        y: (parent.height - self.height) / 2;
+        clip: true;
 
         Image {
             source: @image-url("../assets/img/fondo_general.png");
             width: parent.width;
             height: parent.height;
-            
         }
-
+        
         @children
     }
-
 }
