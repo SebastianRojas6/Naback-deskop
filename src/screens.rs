@@ -1,4 +1,5 @@
 slint::include_modules!();
+use crate::game_logic::game_main::game;
 
 pub enum Pantallas {
     Menu,
@@ -13,7 +14,7 @@ impl Pantallas {
             Pantallas::Menu => Menu::new()?.run(),
             Pantallas::Fotos => Photos::new()?.run(),
             Pantallas::Cartas => Cards::new()?.run(),
-            Pantallas::Juego => Game::new()?.run(),
+            Pantallas::Juego => game(),
         }
     }
 }
