@@ -1,0 +1,45 @@
+export component PhotoBox {
+    in property <string> img_name;
+    in property <image> img_source;
+
+    Rectangle {
+        border-width: 2px;
+        border-radius: 15px;
+        clip: true;
+
+        Image {
+            source: @image-url("../assets/img/cuadro_updated.png");
+            width: parent.width;
+            height: parent.height;
+        }
+
+        Rectangle {
+            x: parent.width * 0.10;
+            y: parent.height * 0.10;
+            width: parent.width * 0.80;
+            height: parent.height * 0.80;
+            clip: true;
+
+            Image {
+                source: @image-url("../assets/img/ferris.png");
+                visible: root.img_name == "ferris";
+                width: parent.width * 0.9;
+                height: parent.height * 0.9;
+            }
+
+            Image {
+                source: @image-url("../assets/img/cuy.png");
+                visible: root.img_name == "cuy";
+                width: parent.width * 0.9;
+                height: parent.height * 0.9;
+            }
+            
+            Image {
+                source: @image-url("../assets/img/h3.png");
+                visible: !(root.img_name == "ferris" || root.img_name == "cuy" || root.img_name == "home");
+                width: parent.width * 0.9;
+                height: parent.height * 0.9;
+            }
+        }
+    }
+}

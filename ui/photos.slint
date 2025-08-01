@@ -1,7 +1,7 @@
 import {Background} from "background.slint";
+import {PhotoBox} from "photo_box.slint";
 
 export component Photos inherits Background {
-
     VerticalLayout {
         padding-top: root.height * 0.02;
 
@@ -13,7 +13,6 @@ export component Photos inherits Background {
                 width: root.width * 0.09;
                 height: root.height * 0.08;
                 clip: true;
-
             }
 
             Text {
@@ -39,13 +38,12 @@ export component Photos inherits Background {
 
     Rectangle {
         x: root.width - self.width - root.width * 0.09;
-        y: root.height * 0.02;
+        y: root.height * 0.019;
         width: root.height * 0.09;
-        height: root.height * 0.09;
+        height: root.height * 0.08;
         clip: true;
 
         Image {
-
             width: parent.width;
             height: parent.height;
             source: @image-url("../assets/img/home.png");
@@ -53,92 +51,38 @@ export component Photos inherits Background {
     }
 
     VerticalLayout {
-
-        padding-top: parent.height * 0.08;
-
-        spacing: -50px;
-        padding: 25px;
+        padding-top: parent.height * 0.09;
+        spacing: parent.height * -0.01;
 
         HorizontalLayout {
+            spacing: parent.width * 0.02;
 
-            spacing: 20px;
-            padding: 30px;
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/ferris.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            PhotoBox {
+                img_name: "ferris";
             }
 
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/ferris.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            PhotoBox {
+                img_name: "cuy";
             }
 
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/cuy.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            PhotoBox {
+                img_name: "cuy";
             }
         }
 
         HorizontalLayout {
-
-            spacing: 20px;
-            padding: 30px;
-
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/cuy.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            spacing: parent.width * 0.02;
+    
+            PhotoBox {
+                img_source: @image-url("../assets/img/cuy.png");
             }
 
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/cuy.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            PhotoBox {
+                img_source: @image-url("../assets/img/cuy.png");
             }
 
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                border-radius: 15px;
-                clip: true;
-                Image {
-                    source: @image-url("../assets/img/cuy.png");
-                    width: parent.width;
-                    height: parent.height;
-                }
+            PhotoBox {
+                img_source: @image-url("../assets/img/cuy.png");
             }
         }
     }
