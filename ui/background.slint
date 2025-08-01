@@ -2,18 +2,106 @@ import "../assets/font/Minecraft.ttf";
 
 export component Background inherits Window {
 
+    property <length> offset_x: 0px;
+    property <length> image_width: self.width * 0.96;
+    property <int> image_width_int: Math.round(image_width / 1px);
+    property <int> image_count: 5;
+    property <length> cycle_width: image_width_int * image_count * 2px;
+
+    Timer {
+        running: true;
+        interval: 4ms;
+
+        triggered => {
+            root.offset_x -= 1px;
+            if (root.offset_x <= -(cycle_width / 2)) {
+                root.offset_x += (cycle_width / 2);
+            }
+        }
+    }
+
     Rectangle {
-        border-radius: 30px;
-        width: parent.width * 0.96;
+        width: image_width;
         height: parent.height * 0.92;
         x: (parent.width - self.width) / 2;
         y: (parent.height - self.height) / 2;
+        border-radius: 30px;
         clip: true;
 
-        Image {
-            source: @image-url("../assets/img/fondo_general.png");
-            width: parent.width;
+        Rectangle {
+            width: cycle_width;
             height: parent.height;
+            x: root.offset_x;
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 0px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general2.png");
+                x: image_width_int * 1px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 2px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general2.png");
+                x: image_width_int * 3px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 4px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 5px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general2.png");
+                x: image_width_int * 6px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 7px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general2.png");
+                x: image_width_int * 8px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
+
+            Image {
+                source: @image-url("../assets/img/fondo_general1.png");
+                x: image_width_int * 9px;
+                width: image_width_int * 1px;
+                height: parent.height;
+            }
         }
 
         @children

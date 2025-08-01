@@ -2,6 +2,7 @@ import {Background} from "background.slint";
 
 export component Game inherits Background {
     in-out property <int> score: 0;
+    in-out property <int> time: 0;
 
     VerticalLayout {
         padding-top: root.height * 0.02;
@@ -76,24 +77,24 @@ export component Game inherits Background {
                 height: 80%;
                 clip: true;
 
-                Text {
-                    text: "Score: " + score;
-                    color: #37383F;
-                    height: parent.height * 0.90;
-                    font-family: "Minecraft";
-                    font-size: 20px;
-                    x: parent.width * 0.05;
-                    y: parent.height * 0.05;
-                }
+                HorizontalLayout {
+                    spacing: parent.width * 0.001;
+                    padding: root.height * 0.05;
+                    alignment: space-between;
 
-                Text {
-                    text: ":Timer";
-                    color: #37383F;
-                    height: parent.height * 0.90;
-                    font-family: "Minecraft";
-                    font-size: 20px;
-                    x: parent.width * 0.8;
-                    y: parent.height * 0.05;
+                    Text {
+                        text: "Score: \{score}";
+                        color: #37383F;
+                        font-family: "Minecraft";
+                        font-size: 20px;
+                    }
+
+                    Text {
+                        text: "Timer: \{time}";
+                        color: #37383F;
+                        font-family: "Minecraft";
+                        font-size: 20px;
+                    }
                 }
 
                 Rectangle {
