@@ -1,43 +1,138 @@
 import {Background} from "background.slint";
+import {TextEdit} from "std-widgets.slint";
 
 export component Cards inherits Background {
-    Text {
-        text: "Cartas";
-        color: #37383F;
-        font-size: 70px;
-        font-family: "Minecraft";
-        height: parent.height * 0.90;
+
+    VerticalLayout {
+        padding-top: root.height * 0.02;
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: root.width * 0.02;
+
+            Rectangle {
+                width: root.width * 0.09;
+                height: root.height * 0.08;
+                clip: true;
+
+                Image {
+
+                    height: parent.height;
+                    width: parent.width;
+                    source: @image-url("../assets/img/flecha_izquierda.png");
+                }
+            }
+
+            Text {
+                text: "¡Go!";
+                color: #37383F;
+                font-size: root.height * 0.08;
+                font-family: "Minecraft";
+                vertical-alignment: center;
+                horizontal-alignment: center;
+            }
+
+            Rectangle {
+                width: root.width * 0.09;
+                height: root.height * 0.08;
+
+            }
+        }
+    }
+
+    Rectangle {
+        x: root.width - self.width - root.width * 0.09;
+        y: root.height * 0.02;
+        width: root.height * 0.09;
+        height: root.height * 0.09;
+        clip: true;
+
+        Image {
+
+            width: parent.width;
+            height: parent.height;
+            source: @image-url("../assets/img/home.png");
+        }
     }
 
     HorizontalLayout {
+        alignment: center;
+        spacing: (parent.height - self.height);
         Rectangle {
             clip: true;
+            height: parent.height * 0.8;
+            width: parent.width * 0.3;
+
+            y: ((parent.height - self.height) / 2) * 1.6;
 
             Image {
-
-                source: @image-url("../assets/img/cuadro.png");
                 height: parent.height;
-                y: (parent.height - self.height) / 2 - 40px;
+                width: parent.width;
+                source: @image-url("../assets/img/cuadro.png");
+            }
+
+            Rectangle {
+                height: parent.height * 0.75;
+                width: parent.width * 0.7;
+                background: black;
+                TextEdit {
+                    width: parent.width;
+                    height: parent.height;
+                    font-size: parent.height * 0.1;
+                    text: "Hola arroba!";
+                    wrap: word-wrap;
+                }
             }
         }
 
         Rectangle {
             clip: true;
-            Image {
+            height: parent.height * 0.8;
+            width: parent.width * 0.3;
+            y: ((parent.height - self.height) / 2) * 1.6;
 
+            Image {
                 source: @image-url("../assets/img/cuadro.png");
                 height: parent.height;
-                y: (parent.height - self.height) / 2 - 40px;
+                width: parent.width;
+            }
+
+            Rectangle {
+                height: parent.height * 0.75;
+                width: parent.width * 0.7;
+                background: black;
+                TextEdit {
+                    width: parent.width;
+                    height: parent.height;
+                    font-size: parent.height * 0.1;
+                    text: "Yaa 😿";
+                    wrap: word-wrap;
+                }
             }
         }
 
         Rectangle {
             clip: true;
+            height: parent.height * 0.8;
+            width: parent.width * 0.3;
+            y: ((parent.height - self.height) / 2) * 1.6;
             Image {
-
                 source: @image-url("../assets/img/cuadro.png");
                 height: parent.height;
-                y: (parent.height - self.height) / 2 - 40px;
+                width: parent.width;
+            }
+
+            Rectangle {
+                height: parent.height * 0.75;
+                width: parent.width * 0.7;
+                background: black;
+                TextEdit {
+                    width: parent.width;
+                    height: parent.height;
+                    font-size: parent.height * 0.1;
+                    text: "(Puedes editar cualquier carta)";
+                    wrap: word-wrap;
+                }
             }
         }
     }

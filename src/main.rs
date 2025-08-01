@@ -1,11 +1,10 @@
 slint::include_modules!();
 
-mod screens;
 mod game_logic;
+mod screens;
 use screens::eleccion;
 
 fn main() -> Result<(), slint::PlatformError> {
-
     loop {
         println!("0: Menú, 1: Fotos, 2: Cartas, 3: Juego, 4: Salir");
 

@@ -2,12 +2,54 @@ import {Background} from "background.slint";
 
 export component Photos inherits Background {
 
-    Text {
-        text: "¡Fotos!";
-        color: #37383F;
-        font-size: 70px;
-        font-family: "Minecraft";
-        height: parent.height * 0.90;
+    VerticalLayout {
+        padding-top: root.height * 0.02;
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: root.width * 0.02;
+
+            Rectangle {
+                width: root.width * 0.09;
+                height: root.height * 0.08;
+                clip: true;
+
+            }
+
+            Text {
+                text: "Fotos";
+                color: #37383F;
+                font-size: root.height * 0.08;
+                font-family: "Minecraft";
+                vertical-alignment: center;
+                horizontal-alignment: center;
+            }
+
+            Rectangle {
+                width: root.width * 0.09;
+                height: root.height * 0.08;
+                Image {
+                    height: parent.height;
+                    width: parent.width;
+                    source: @image-url("../assets/img/flecha_derecha.png");
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        x: root.width - self.width - root.width * 0.09;
+        y: root.height * 0.02;
+        width: root.height * 0.09;
+        height: root.height * 0.09;
+        clip: true;
+
+        Image {
+
+            width: parent.width;
+            height: parent.height;
+            source: @image-url("../assets/img/home.png");
+        }
     }
 
     VerticalLayout {
