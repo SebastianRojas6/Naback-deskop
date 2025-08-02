@@ -4,6 +4,8 @@ export component Game inherits Background {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
 
+    callback on_game_started;
+
     VerticalLayout {
         padding-top: root.height * 0.02;
 

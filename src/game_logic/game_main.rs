@@ -1,8 +1,9 @@
 use super::timer::time;
-use slint::invoke_from_event_loop;
-slint::include_modules!();
+use slint::{invoke_from_event_loop, ComponentHandle};
+use crate::Game; 
 
 pub fn game() -> Result<(), slint::PlatformError> {
+
     let game: Game = Game::new()?;
 
     let game_weak_for_time = game.as_weak();

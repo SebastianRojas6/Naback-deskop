@@ -1,33 +1,29 @@
-slint::include_modules!();
-use crate::game_logic::game_main::game;
+use crate::MainWrapper;
+use crate::game_logic::game_main;
+use slint::ComponentHandle;
 
 pub enum Pantallas {
-    Menu,
-    Fotos,
-    Cartas,
+    Main,
     Juego,
 }
 
 impl Pantallas {
     pub fn mostrar(&self) -> Result<(), slint::PlatformError> {
         match self {
-            Pantallas::Menu => Menu::new()?.run(),
-            Pantallas::Fotos => Photos::new()?.run(),
-            Pantallas::Cartas => Cards::new()?.run(),
-            Pantallas::Juego => game(),
-        }
-    }
-}
+            Pantallas::Main => {
+                let main = MainWrapper::new()?;
+                let weak = main.as_weak();
 
-pub fn eleccion(x: i32) -> Pantallas {
-    match x {
-        0 => Pantallas::Menu,
-        1 => Pantallas::Fotos,
-        2 => Pantallas::Cartas,
-        3 => Pantallas::Juego,
-        _ => {
-            println!("Opción inválida");
-            Pantallas::Menu
+                main.on_navigate_to_game(move || {
+                    if let Some(_) = weak.upgrade() {
+                       let _ = Pantallas::Juego.mostrar();
+                    }
+                });
+
+                main.run()
+            }
+
+        Pantallas::Juego => game_main::game(),
         }
     }
 }
