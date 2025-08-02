@@ -1,8 +1,8 @@
 export component PhotoBox {
     in property <string> img_name;
     in property <image> img_source;
-
     Rectangle {
+
         border-width: 2px;
         border-radius: 15px;
         clip: true;
@@ -33,7 +33,7 @@ export component PhotoBox {
                 width: parent.width * 0.9;
                 height: parent.height * 0.9;
             }
-            
+
             Image {
                 source: @image-url("../assets/img/h3.png");
                 visible: !(root.img_name == "ferris" || root.img_name == "cuy" || root.img_name == "home");

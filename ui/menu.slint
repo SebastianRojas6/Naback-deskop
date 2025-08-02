@@ -2,6 +2,10 @@ import {Background} from "background.slint";
 
 export component Menu inherits Background {
 
+    callback go_to_photos();
+    callback go_to_game();
+    callback go_to_cards();
+
     Text {
         text: "¡Elige uno!";
         color: #37383F;
@@ -39,21 +43,53 @@ export component Menu inherits Background {
                     width: root.width * 0.15;
                     height: self.width;
                     border-radius: self.width / 2;
-                    background: blue;
+                    background: gray;
+                    border-color: black;
+                    border-width: self.width * 0.05;
+                    clip: true;
+                    Image {
+                        width: parent.width * 0.8;
+                        height: parent.height * 0.6;
+                        source: @image-url("../assets/img/camara.png");
+                    }
+/*
+                    area := TouchArea {
+                        width: parent.width;
+                        height: parent.height;
+                        clicked => {
+                            root.go_to_photos();
+                        }
+                    }
+ */               }
+
+                Rectangle {
+                    width: root.width * 0.15;
+                    height: self.width;
+                    border-radius: self.width / 2;
+                    background: gray;
+                    border-color: black;
+                    border-width: self.width * 0.05;
+                    clip: true;
+                    Image {
+                        width: parent.width * 0.65;
+                        height: parent.height * 0.65;
+                        source: @image-url("../assets/img/dinosaur.png");
+                    }
                 }
 
                 Rectangle {
                     width: root.width * 0.15;
                     height: self.width;
                     border-radius: self.width / 2;
-                    background: red;
-                }
-
-                Rectangle {
-                    width: root.width * 0.15;
-                    height: self.width;
-                    border-radius: self.width / 2;
-                    background: green;
+                    background: gray;
+                    border-color: black;
+                    border-width: self.width * 0.05;
+                    clip: true;
+                    Image {
+                        width: parent.width * 0.75;
+                        height: parent.height * 0.65;
+                        source: @image-url("../assets/img/cartas.png");
+                    }
                 }
             }
         }

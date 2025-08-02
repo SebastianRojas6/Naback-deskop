@@ -5,4 +5,38 @@ import { Game } from "game.slint";
 
 export { Menu, Photos, Cards , Game}
 
-export component MainWrapper inherits Window { }
+export component MainWrapper inherits Window {
+
+    /*
+    in-out property <string> current_page: "menu";
+
+    callback entered_game();
+
+    Menu {
+        visible: root.current_page == "menu";
+        go_to_photos => {
+            root.current_page = "photos";
+        }
+        go_to_game => {
+            root.current_page = "game";
+            root.entered_game();
+        }
+        go_to_cards => {
+            root.current_page = "cards";
+        }
+    }
+
+    Photos {
+        visible: root.current_page == "photos";
+    }
+
+    Game {
+        visible: root.current_page == "game";
+    }
+
+    Cards {
+        visible: root.current_page == "cards";
+    }
+*/
+}
+
