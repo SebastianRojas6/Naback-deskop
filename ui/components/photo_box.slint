@@ -8,7 +8,7 @@ export component PhotoBox {
         clip: true;
 
         Image {
-            source: @image-url("../assets/img/cuadro_updated.png");
+            source: @image-url("../../assets/img/cuadro_updated.png");
             width: parent.width;
             height: parent.height;
         }
@@ -21,21 +21,21 @@ export component PhotoBox {
             clip: true;
 
             Image {
-                source: @image-url("../assets/img/ferris.png");
+                source: @image-url("../../assets/img/ferris.png");
                 visible: root.img_name == "ferris";
                 width: parent.width * 0.9;
                 height: parent.height * 0.9;
             }
 
             Image {
-                source: @image-url("../assets/img/cuy.png");
+                source: @image-url("../../assets/img/cuy.png");
                 visible: root.img_name == "cuy";
                 width: parent.width * 0.9;
                 height: parent.height * 0.9;
             }
 
             Image {
-                source: @image-url("../assets/img/h3.png");
+                source: @image-url("../../assets/img/h3.png");
                 visible: !(root.img_name == "ferris" || root.img_name == "cuy" || root.img_name == "home");
                 width: parent.width * 0.9;
                 height: parent.height * 0.9;

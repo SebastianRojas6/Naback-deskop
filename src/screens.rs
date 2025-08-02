@@ -16,14 +16,14 @@ impl Pantallas {
 
                 main.on_navigate_to_game(move || {
                     if let Some(_) = weak.upgrade() {
-                       let _ = Pantallas::Juego.mostrar();
+                        let _ = Pantallas::Juego.mostrar();
                     }
                 });
 
                 main.run()
             }
 
-        Pantallas::Juego => game_main::game(),
+            Pantallas::Juego => game_main::game(),
         }
     }
 }

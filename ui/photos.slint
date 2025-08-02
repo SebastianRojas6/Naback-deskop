@@ -1,41 +1,17 @@
 import {Background} from "background.slint";
-import {PhotoBox} from "photo_box.slint";
-
+import {PhotoBox} from "components/photo_box.slint";
+import { ArrowHeader } from "components/buttons.slint";
 export component Photos inherits Background {
 
-    callback navigate();
+    callback go_to_game();
 
-    VerticalLayout {
-        padding-top: root.height * 0.02;
-
-        HorizontalLayout {
-            alignment: center;
-            spacing: root.width * 0.02;
-
-            Rectangle {
-                width: root.width * 0.09;
-                height: root.height * 0.08;
-                clip: true;
-            }
-
-            Text {
-                text: "Fotos";
-                color: #37383F;
-                font-size: root.height * 0.08;
-                font-family: "Minecraft";
-                vertical-alignment: center;
-                horizontal-alignment: center;
-            }
-
-            Rectangle {
-                width: root.width * 0.09;
-                height: root.height * 0.08;
-                Image {
-                    height: parent.height;
-                    width: parent.width;
-                    source: @image-url("../assets/img/flecha_derecha.png");
-                }
-            }
+    ArrowHeader {
+        y: root.height * 0.019;
+        scale: root.height / 750px;
+        show_left: false;
+        title: "Fotos";
+        go_right => {
+            go_to_game();
         }
     }
 

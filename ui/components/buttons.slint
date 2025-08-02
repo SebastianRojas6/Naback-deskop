@@ -1,0 +1,68 @@
+export component ArrowHeader inherits Rectangle {
+    in property <bool> show_left: true;
+    in property <bool> show_right: true;
+    in property <string> title: "¡Test!";
+    in property <float> scale: 1.0;
+
+    callback go_left;
+    callback go_right;
+
+    height: 80px * scale;
+
+    VerticalLayout {
+
+        alignment: center;
+
+        HorizontalLayout {
+            spacing: 10px * scale;
+            alignment: center;
+
+            Rectangle {
+                visible: root.show_left;
+                width: 50px * scale;
+                height: 50px * scale;
+                clip: true;
+
+                Image {
+                    source: @image-url("../../assets/img/flecha_izquierda.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+
+                TouchArea {
+                    clicked => {
+                        root.go_left();
+                    }
+                }
+            }
+
+            Text {
+                text: root.title;
+                font-size: 50px * scale;
+                color: #37383F;
+                font-family: "Minecraft";
+                vertical-alignment: center;
+                horizontal-alignment: center;
+            }
+
+            Rectangle {
+                visible: root.show_right;
+                width: 50px * scale;
+                height: 50px * scale;
+                clip: true;
+
+                Image {
+                    source: @image-url("../../assets/img/flecha_derecha.png");
+                    width: parent.width;
+                    height: parent.height;
+                }
+
+                TouchArea {
+                    clicked => {
+                        root.go_right();
+                    }
+                }
+            }
+        }
+    }
+}
