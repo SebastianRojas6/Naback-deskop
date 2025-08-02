@@ -6,9 +6,12 @@ import { Game } from "game.slint";
 export { Menu, Photos, Cards , Game}
 
 export component MainWrapper inherits Window {
-    property <int> current_page: 0;
-    callback navigate_to_game;
 
+    in-out property <int> current_page: 0;
+
+    callback navigate_to_game;
+    callback navigate_to_game_with_instance;
+    
     Menu {
         width: parent.width;
         height: parent.height;
@@ -19,7 +22,7 @@ export component MainWrapper inherits Window {
         }
         go_to_game => {
             root.current_page = 2;
-            root.navigate_to_game();
+            root.navigate_to_game_with_instance();
         }
 
         go_to_cards => {
@@ -34,7 +37,7 @@ export component MainWrapper inherits Window {
 
         go_to_game => {
             root.current_page = 2;
-            root.navigate_to_game();
+            root.navigate_to_game_with_instance();
         }
 
         go_to_home => {
@@ -67,7 +70,7 @@ export component MainWrapper inherits Window {
 
         go_to_game => {
             root.current_page = 2;
-            root.navigate_to_game();
+            root.navigate_to_game_with_instance();
         }
 
         go_to_home => {

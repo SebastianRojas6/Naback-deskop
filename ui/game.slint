@@ -1,11 +1,12 @@
 import {Background} from "background.slint";
 import { ArrowHeader } from "components/buttons.slint";
-import { home_button } from "components/home.slint";
+import { Home_button } from "components/home.slint";
+import { Game_window } from "components/game_window.slint";
 
 export component Game inherits Background {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
-
+        
     callback go_to_cards();
     callback go_to_photos();
     callback go_to_home();
@@ -25,7 +26,7 @@ export component Game inherits Background {
         }
     }
 
-    home-button {
+    Home-button {
         scale: root.height / 850px;
         x: root.width - self.width - root.width * 0.09;
         y: root.height * 0.020;
@@ -34,69 +35,10 @@ export component Game inherits Background {
         }
     }
 
-    VerticalLayout {
-
-        padding-top: 30px;
-
-        alignment: center;
-
-        HorizontalLayout {
-            alignment: center;
-            Rectangle {
-                border-color: black;
-                border-width: 2px;
-                background: #D9D9D9;
-                width: parent.width * 0.9;
-                border-radius: 10px;
-                height: 80%;
-                clip: true;
-
-                HorizontalLayout {
-                    spacing: parent.width * 0.001;
-                    padding: root.height * 0.05;
-                    alignment: space-between;
-
-                    Text {
-                        text: "Score: \{score}";
-                        color: #37383F;
-                        font-family: "Minecraft";
-                        font-size: 20px;
-                    }
-
-                    Text {
-                        text: "Timer: \{time}";
-                        color: #37383F;
-                        font-family: "Minecraft";
-                        font-size: 20px;
-                    }
-                }
-
-                Rectangle {
-                    width: parent.width;
-                    height: 70%;
-                    y: parent.height - self.height;
-
-                    Image {
-                        source: @image-url("../assets/img/background.png");
-                        width: parent.width;
-                        height: parent.height;
-                    }
-                }
-
-                Rectangle {
-
-                    width: parent.width * 0.1;
-                    height: 40%;
-                    y: parent.height - self.height - parent.height * 0.05;
-                    x: parent.width * 0.1;
-                    Image {
-                        source: @image-url("../assets/img/h2.png");
-                        width: parent.width;
-                        height: parent.height;
-                        image-fit: contain;
-                    }
-                }
-            }
-        }
+    Game-window {
+        x: root.width - self.width - root.width * 0.04;
+        y: root.height * 0.035;
+        score: root.score;
+        time: root.time;
     }
 }
