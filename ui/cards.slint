@@ -4,12 +4,15 @@ import { ArrowHeader } from "components/buttons.slint";
 
 export component Cards inherits Background {
 
+    callback go_to_game();
+
     ArrowHeader {
         y: root.height * 0.019;
         scale: root.height / 750px;
         title: "¡Empezar!";
         show_right: false;
-        go_right => {
+        go_left => {
+            go_to_game();
         }
     }
 

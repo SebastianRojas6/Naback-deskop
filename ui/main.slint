@@ -31,17 +31,35 @@ export component MainWrapper inherits Window {
         width: parent.width;
         height: parent.height;
         visible: root.current_page == 1;
+
+        go_to_game => {
+            root.current_page = 2;
+            root.navigate_to_game();
+        }
     }
 
     Game {
         width: parent.width;
         height: parent.height;
         visible: root.current_page == 2;
+
+        go_to_photos => {
+            root.current_page = 1;
+        }
+
+        go_to_cards => {
+            root.current_page = 3;
+        }
     }
 
     Cards {
         width: parent.width;
         height: parent.height;
         visible: root.current_page == 3;
+
+        go_to_game => {
+            root.current_page = 2;
+            root.navigate_to_game();
+        }
     }
 }

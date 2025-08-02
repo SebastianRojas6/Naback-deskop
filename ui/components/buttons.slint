@@ -30,6 +30,8 @@ export component ArrowHeader inherits Rectangle {
                 }
 
                 TouchArea {
+                    width: parent.width;
+                    height: parent.width;
                     clicked => {
                         root.go_left();
                     }
@@ -58,6 +60,8 @@ export component ArrowHeader inherits Rectangle {
                 }
 
                 TouchArea {
+                    width: parent.width;
+                    height: parent.width;
                     clicked => {
                         root.go_right();
                     }
