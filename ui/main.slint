@@ -8,10 +8,11 @@ export { Menu, Photos, Cards , Game}
 export component MainWrapper inherits Window {
 
     in-out property <int> current_page: 0;
+    in-out property <int> score: 0;
+    in-out property <int> time: 0;
 
-    callback navigate_to_game;
     callback navigate_to_game_with_instance;
-    
+
     Menu {
         width: parent.width;
         height: parent.height;
@@ -49,7 +50,11 @@ export component MainWrapper inherits Window {
         width: parent.width;
         height: parent.height;
         visible: root.current_page == 2;
-
+        
+        // propiedades
+        score: root.score;
+        time: root.time;
+        
         go_to_photos => {
             root.current_page = 1;
         }

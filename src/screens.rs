@@ -1,10 +1,9 @@
 use crate::MainWrapper;
-use crate::game_logic::game_main;
 use slint::ComponentHandle;
+use crate::game_logic::game_main;
 
 pub enum Pantallas {
     Main,
-    Juego,
 }
 
 impl Pantallas {
@@ -14,16 +13,12 @@ impl Pantallas {
                 let main = MainWrapper::new()?;
                 let weak = main.as_weak();
 
-                main.on_navigate_to_game(move || {
-                    if let Some(_) = weak.upgrade() {
-                        let _ = Pantallas::Juego.mostrar();
-                    }
+                main.on_navigate_to_game_with_instance(move || {
+                    game_main::game(weak.clone());
                 });
 
                 main.run()
             }
-
-            Pantallas::Juego => game_main::game(),
         }
     }
 }

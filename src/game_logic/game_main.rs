@@ -1,21 +1,18 @@
+use slint::{invoke_from_event_loop, Weak};
+use crate::MainWrapper;
 use super::timer::time;
-use slint::{invoke_from_event_loop, ComponentHandle};
-use crate::Game; 
 
-pub fn game() -> Result<(), slint::PlatformError> {
-
-    let game: Game = Game::new()?;
-
-    let game_weak_for_time = game.as_weak();
-    let game_weak_for_score = game.as_weak();
+pub fn game(main_weak: Weak<MainWrapper>) {
+    let weak_time = main_weak.clone();
+    let weak_score = main_weak.clone();
 
     std::thread::spawn(move || {
         loop {
             let t = time();
-            let game_weak = game_weak_for_time.clone();
+            let weak = weak_time.clone();
             let _ = invoke_from_event_loop(move || {
-                if let Some(game) = game_weak.upgrade() {
-                    game.set_time(t);
+                if let Some(main) = weak.upgrade() {
+                    main.set_time(t);
                 }
             });
             std::thread::sleep(std::time::Duration::from_secs(1));
@@ -24,15 +21,13 @@ pub fn game() -> Result<(), slint::PlatformError> {
 
     std::thread::spawn(move || {
         loop {
-            let game_weak = game_weak_for_score.clone();
+            let weak = weak_score.clone();
             let _ = invoke_from_event_loop(move || {
-                if let Some(game) = game_weak.upgrade() {
-                    game.set_score(32);
+                if let Some(main) = weak.upgrade() {
+                    main.set_score(32);
                 }
             });
             std::thread::sleep(std::time::Duration::from_millis(300));
         }
     });
-
-    game.run()
 }
