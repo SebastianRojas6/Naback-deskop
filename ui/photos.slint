@@ -1,9 +1,12 @@
 import {Background} from "background.slint";
 import {PhotoBox} from "components/photo_box.slint";
 import { ArrowHeader } from "components/buttons.slint";
+import { home_button } from "components/home.slint";
+
 export component Photos inherits Background {
 
     callback go_to_game();
+    callback go_to_home();
 
     ArrowHeader {
         y: root.height * 0.019;
@@ -15,17 +18,12 @@ export component Photos inherits Background {
         }
     }
 
-    Rectangle {
+    home-button {
+        scale: root.height / 850px;
         x: root.width - self.width - root.width * 0.09;
-        y: root.height * 0.019;
-        width: root.height * 0.09;
-        height: root.height * 0.08;
-        clip: true;
-
-        Image {
-            width: parent.width;
-            height: parent.height;
-            source: @image-url("../assets/img/home.png");
+        y: root.height * 0.020;
+        go_home => {
+            go_to_home();
         }
     }
 

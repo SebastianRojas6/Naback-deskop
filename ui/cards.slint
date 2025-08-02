@@ -1,10 +1,12 @@
 import {Background} from "background.slint";
 import {TextEdit} from "std-widgets.slint";
 import { ArrowHeader } from "components/buttons.slint";
+import { home_button } from "components/home.slint";
 
 export component Cards inherits Background {
 
     callback go_to_game();
+    callback go_to_home();
 
     ArrowHeader {
         y: root.height * 0.019;
@@ -16,18 +18,13 @@ export component Cards inherits Background {
         }
     }
 
-    Rectangle {
+    home-button {
+        scale: root.height / 850px;
         x: root.width - self.width - root.width * 0.09;
-        y: root.height * 0.019;
-        width: root.height * 0.09;
-        height: root.height * 0.08;
-        clip: true;
+        y: root.height * 0.020;
 
-        Image {
-
-            width: parent.width;
-            height: parent.height;
-            source: @image-url("../assets/img/home.png");
+        go_home => {
+            go_to_home()
         }
     }
 

@@ -1,0 +1,25 @@
+export component home_button inherits Rectangle {
+
+    callback go_home();
+
+    in property <float> scale: 1.0;
+
+    width: 80px * scale;
+    height: 70px * scale;
+    clip: true;
+
+    Image {
+        width: parent.width;
+        height: parent.height;
+        source: @image-url("../../assets/img/home.png");
+    }
+
+    TouchArea {
+        width: parent.width;
+        height: parent.width;
+        clicked => {
+            root.go_home();
+        }
+    }
+}
+
