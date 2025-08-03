@@ -6,7 +6,6 @@ import { Game_window } from "components/game_window.slint";
 export component Game inherits Background {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
-        
     callback go_to_cards();
     callback go_to_photos();
     callback go_to_home();
@@ -14,7 +13,7 @@ export component Game inherits Background {
     ArrowHeader {
         y: root.height * 0.019;
         scale: root.height / 750px;
-        title: "¡Empezar!";
+        title: "¡Go!";
         go_right => {
             go_to_cards();
         }
@@ -38,6 +37,8 @@ export component Game inherits Background {
         y: root.height * 0.035;
         score: root.score;
         time: root.time;
-        scale: parent.height / 650px;
+
+        scale: root.height / 650px;
+        available_width: root.width * 0.98;
     }
 }

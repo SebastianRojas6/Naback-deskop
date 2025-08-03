@@ -1,6 +1,8 @@
 export component Game_window inherits Rectangle {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
+
+    in property <length> available_width;
     in property <float> scale: 1.0;
 
     property <int> frame: 0;
@@ -13,30 +15,30 @@ export component Game_window inherits Rectangle {
             alignment: center;
             Rectangle {
                 border-color: black;
-                border-width: 2px;
+                border-width: 2px * scale;
                 background: #D9D9D9;
-                width: 970px * scale;
-                border-radius: 10px;
+                width: Math.min(1090px * scale, available_width);
+                border-radius: 10px * scale;
                 height: 480px * scale;
                 clip: true;
 
                 HorizontalLayout {
-                    spacing: parent.width * 0.001;
-                    padding: 30px * scale;
+                    padding: 20px * scale;
+                    spacing: 16px * scale;
                     alignment: space-between;
 
                     Text {
                         text: "Score: \{score}";
                         color: #37383F;
                         font-family: "Minecraft";
-                        font-size: 20px;
+                        font-size: 20px * scale;
                     }
 
                     Text {
                         text: "Timer: \{time}";
                         color: #37383F;
                         font-family: "Minecraft";
-                        font-size: 20px;
+                        font-size: 20px * scale;
                     }
                 }
 
@@ -53,7 +55,7 @@ export component Game_window inherits Rectangle {
                 }
 
                 Timer {
-                    interval: 400ms;
+                    interval: 600ms;
                     running: true;
                     triggered => {
                         frame = Math.mod(frame + 1, 2);
