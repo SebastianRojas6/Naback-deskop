@@ -1,11 +1,20 @@
 export component Game_window inherits Rectangle {
+    
+    //propieaded exportables para el back
     in-out property <int> score: 0;
     in-out property <int> time: 0;
 
     in property <length> available_width;
     in property <float> scale: 1.0;
 
+    //game 
+    property <bool> is_jumping: false;
     property <int> frame: 0;
+    property <bool> jump_triggered: false;
+
+    //
+    property <length> ground_y: 480px * 0.55;
+    property <length> jump_y: 480px * 0.05;
 
     VerticalLayout {
 
@@ -17,14 +26,14 @@ export component Game_window inherits Rectangle {
                 border-color: black;
                 border-width: 2px * scale;
                 background: #D9D9D9;
-                width: Math.min(1090px * scale, available_width);
+                width: Math.min(1290px * scale, available_width);
                 border-radius: 10px * scale;
                 height: 480px * scale;
                 clip: true;
 
                 HorizontalLayout {
                     padding: 20px * scale;
-                    spacing: 16px * scale;
+                    spacing: 12px * scale;
                     alignment: space-between;
 
                     Text {
@@ -66,8 +75,13 @@ export component Game_window inherits Rectangle {
 
                     width: parent.width * 0.1;
                     height: 40%;
-                    y: parent.height - self.height - parent.height * 0.05;
-                    x: parent.width * 0.1;
+                    y: is_jumping ? jump_y * scale : ground_y * scale;
+                    x: parent.width * 0.05;
+
+                    animate y {
+                        duration: 480ms;
+                        easing: ease-out;
+                    }
 
                     Image {
                         width: parent.width;
@@ -79,6 +93,45 @@ export component Game_window inherits Rectangle {
                             } else {
                                 @image-url("../../assets/img/h4.png");
                             }
+                        }
+                    }
+
+                    focus-timer := Timer {
+                        interval: 10ms;
+                        running: true;
+
+                        triggered => {
+                            my-key-handler.focus();
+                        }
+                    }
+
+                    fall-timer := Timer {
+                        interval: 400ms;
+                        running: false;
+                        triggered => {
+                            is_jumping = false;
+                        }
+                    }
+
+
+                    //Para recibir futuros callbacks
+                    forward-focus: my-key-handler;
+                    my-key-handler := FocusScope {
+
+                        key-pressed(event) => {
+                            if (event.text == " " && true && !is_jumping && !jump_triggered) {
+                                is_jumping = true;
+                                jump_triggered = true;
+                                fall-timer.running = true;
+                            }
+                            accept
+                        }
+
+                        key-released(event) => {
+                            if (event.text == " ") {
+                                jump_triggered = false;
+                            }
+                            accept
                         }
                     }
                 }
