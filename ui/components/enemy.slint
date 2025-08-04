@@ -1,0 +1,29 @@
+export component Enemy inherits Rectangle {
+    in property <float> speed: 1.0;
+    in property <float> scale: 1.0;
+
+    in-out property <float> position_x: 0.0;
+    
+    x: position_x * 1px;
+
+    width: 60px * scale;
+    height: 40px * scale;
+    background: transparent;
+
+    Rectangle {
+        Image {
+            width: 100%;
+            height: 100%;
+            source: @image-url("../../assets/img/cuy.png");
+        }
+    }
+
+    // Movimiento automático
+    Timer {
+        interval: 16ms; 
+        running: true;
+        triggered => {
+            position_x -= speed * 2;
+        }
+    }
+}

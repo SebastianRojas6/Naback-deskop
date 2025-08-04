@@ -1,3 +1,6 @@
+import { Enemy } from "enemy.slint";
+import { MainCharacter } from "main_character.slint";
+
 export component Game_window inherits Rectangle {
     
     //propieaded exportables para el back
@@ -71,69 +74,20 @@ export component Game_window inherits Rectangle {
                     }
                 }
 
-                Rectangle {
+                MainCharacter {
+                    scale: root.scale * 1.2;
+                    frame: root.frame;
+                    is_jumping <=> root.is_jumping;
+                    jump_triggered <=> root.jump_triggered;
+                    ground_y: root.ground_y;
+                    jump_y: root.jump_y;
+                }
 
-                    width: parent.width * 0.1;
-                    height: 40%;
-                    y: is_jumping ? jump_y * scale : ground_y * scale;
-                    x: parent.width * 0.05;
-
-                    animate y {
-                        duration: 480ms;
-                        easing: ease-out;
-                    }
-
-                    Image {
-                        width: parent.width;
-                        height: parent.height;
-                        image-fit: contain;
-                        source: {
-                            if frame == 1 {
-                                @image-url("../../assets/img/h2.png");
-                            } else {
-                                @image-url("../../assets/img/h4.png");
-                            }
-                        }
-                    }
-
-                    focus-timer := Timer {
-                        interval: 10ms;
-                        running: true;
-
-                        triggered => {
-                            my-key-handler.focus();
-                        }
-                    }
-
-                    fall-timer := Timer {
-                        interval: 400ms;
-                        running: false;
-                        triggered => {
-                            is_jumping = false;
-                        }
-                    }
-
-
-                    //Para recibir futuros callbacks
-                    forward-focus: my-key-handler;
-                    my-key-handler := FocusScope {
-
-                        key-pressed(event) => {
-                            if (event.text == " " && true && !is_jumping && !jump_triggered) {
-                                is_jumping = true;
-                                jump_triggered = true;
-                                fall-timer.running = true;
-                            }
-                            accept
-                        }
-
-                        key-released(event) => {
-                            if (event.text == " ") {
-                                jump_triggered = false;
-                            }
-                            accept
-                        }
-                    }
+                Enemy {
+                    speed: 1.5;
+                    scale: root.scale;
+                    position_x: parent.width / 1px;
+                    y: parent.height - self.height * 2;
                 }
             }
         }

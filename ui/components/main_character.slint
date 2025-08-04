@@ -1,0 +1,72 @@
+export component MainCharacter inherits Rectangle {
+    in-out property <bool> is_jumping: false;
+    in-out property <bool> jump_triggered: false;
+    in property <float> scale: 1.0;
+    in property <int> frame: 0;
+    in-out property <bool> has_focus: true;
+
+    in property <length> ground_y: 480px * 0.55;
+    in property <length> jump_y: 480px * 0.05;
+
+    in property <length> character_height: 100px;
+    in property <length> character_width: 100px;
+
+    width: 100px * scale;
+    height: 100px * scale;
+    y: is_jumping ? jump_y * scale : ground_y * scale;
+    x: root.width * 0.05;
+
+    animate y {
+        duration: 480ms;
+        easing: ease-out;
+    }
+
+    Image {
+        width: parent.width;
+        height: parent.height;
+        image-fit: contain;
+        source: {
+            if frame == 1 {
+                @image-url("../../assets/img/h2.png");
+            } else {
+                @image-url("../../assets/img/h4.png");
+            }
+        }
+    }
+
+    focus-timer := Timer {
+        interval: 10ms;
+        running: true;
+        triggered => {
+            my-key-handler.focus();
+        }
+    }
+
+    fall-timer := Timer {
+        interval: 400ms;
+        running: false;
+        triggered => {
+            root.is_jumping = false;
+        }
+    }
+
+    forward-focus: my-key-handler;
+
+    my-key-handler := FocusScope {
+        key-pressed(event) => {
+            if (event.text == " " && !root.is_jumping && !root.jump_triggered) {
+                root.is_jumping = true;
+                root.jump_triggered = true;
+                fall-timer.running = true;
+            }
+            accept
+        }
+
+        key-released(event) => {
+            if (event.text == " ") {
+                root.jump_triggered = false;
+            }
+            accept
+        }
+    }
+}
