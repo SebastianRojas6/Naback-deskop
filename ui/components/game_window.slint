@@ -77,10 +77,10 @@ export component Game_window inherits Rectangle {
                 MainCharacter {
                     scale: root.scale * 1.2;
                     frame: root.frame;
-                    is_jumping <=> root.is_jumping;
-                    jump_triggered <=> root.jump_triggered;
                     ground_y: root.ground_y;
                     jump_y: root.jump_y;
+                    is_jumping <=> root.is_jumping;
+                    jump_triggered <=> root.jump_triggered;
                 }
 
                 Enemy {
