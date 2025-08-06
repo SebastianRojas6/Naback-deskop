@@ -21,16 +21,5 @@ export component Enemy inherits Rectangle {
             source: @image-url("../../assets/img/cuy.png");
         }
     }
-
-    Timer {
-        interval: 16ms;
-        running: !root.game_over;
-        triggered => {
-            position_x -= speed * 2;
-
-            if (position_x < -(root.width / 1px)) {
-                position_x = (parent.width / 1px) + (root.width / 1px);
-            }
-        }
-    }
 }
+

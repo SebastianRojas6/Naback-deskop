@@ -14,6 +14,11 @@ export component MainCharacter inherits Rectangle {
     in property <length> character_height: 100px;
     in property <length> character_width: 100px;
 
+    in-out property <float> main_char_x;
+    in-out property <float> main_char_y;
+    in-out property <float> main_char_w;
+    in-out property <float> main_char_h;
+    
     in property <bool> game_over: false;
 
     width: 55px * scale;

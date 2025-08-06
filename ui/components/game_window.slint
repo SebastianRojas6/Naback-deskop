@@ -17,6 +17,15 @@ export component Game_window inherits Rectangle {
     property <length> ground_y: 480px * 0.55;
     property <length> jump_y: 480px * 0.05;
 
+    in-out property <float> main_char_x;
+    in-out property <float> main_char_y;
+    in-out property <float> main_char_w;
+    in-out property <float> main_char_h;
+
+    in-out property <[float]> enemy_positions: [];
+
+    callback set_enemy_positions([float]);
+
     callback spawn_enemy();
 
     VerticalLayout {
@@ -108,18 +117,16 @@ export component Game_window inherits Rectangle {
                 enemy := Enemy {
                     speed: 1.5;
                     scale: root.scale;
-                    position_x: parent.width / 1px;
+                    position_x: (parent.width - self.width) / 1px;
                     game_over <=> root.game_over;
                     y: parent.height - self.height * 2;
                 }
 
-                for _idx in enemy_count - 1:  
-                    enemy_item := Enemy {
-                    speed: 1.5;
-                    scale: root.scale;
-                    position_x: parent.width / 1px;
+                for pos in enemy_positions: enemy_item := Enemy {
+                    position_x: pos;
                     game_over <=> root.game_over;
                     y: parent.height - self.height * 2;
+                    scale: root.scale;
                 }
             }
         }

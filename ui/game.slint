@@ -7,11 +7,18 @@ export component Game inherits Background {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
     in-out property <int> enemy_count: 0;
+    in-out property <[float]> enemy_positions: [];
+    
+    in-out property <float> main_char_x;
+    in-out property <float> main_char_y;
+    in-out property <float> main_char_w;
+    in-out property <float> main_char_h;
 
     callback go_to_cards();
     callback go_to_photos();
     callback go_to_home();
     callback spawn_enemy();
+    callback set_enemy_positions([float]);
 
     ArrowHeader {
         y: root.height * 0.019;
@@ -43,6 +50,6 @@ export component Game inherits Background {
         scale: root.height / 650px;
         available_width: root.width * 0.95;
         enemy_count <=> root.enemy_count;
-        spawn_enemy => { root.spawn_enemy(); }
+        enemy_positions <=> root.enemy_positions;
     }
 }
