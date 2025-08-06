@@ -1,6 +1,9 @@
 export component MainCharacter inherits Rectangle {
+    
+    //callbacks
     in-out property <bool> is_jumping: false;
     in-out property <bool> jump_triggered: false;
+
     in property <float> scale: 1.0;
     in property <int> frame: 0;
     in-out property <bool> has_focus: true;
@@ -20,8 +23,18 @@ export component MainCharacter inherits Rectangle {
     border-width: 2px * scale;
 
     animate y {
-        duration: 480ms;
+        duration: 550ms;
         easing: ease-out;
+    }
+
+    ground_check := Timer {
+        interval: 20ms;
+        running: true;
+        triggered => {
+        if (root.is_jumping && Math.abs(root.y - (root.jump_y * root.scale)) < 1px) {
+                root.is_jumping = false;
+            }
+        }
     }
 
     Image {
@@ -45,22 +58,13 @@ export component MainCharacter inherits Rectangle {
         }
     }
 
-    fall-timer := Timer {
-        interval: 400ms;
-        running: false;
-        triggered => {
-            root.is_jumping = false;
-        }
-    }
-
     forward-focus: my-key-handler;
 
     my-key-handler := FocusScope {
         key-pressed(event) => {
-            if (event.text == " " && !root.is_jumping && !root.jump_triggered) {
+            if (event.text == " " && !root.is_jumping && !root.jump_triggered && Math.abs(root.y - (root.ground_y * root.scale)) < 2px) {
                 root.is_jumping = true;
                 root.jump_triggered = true;
-                fall-timer.running = true;
             }
             accept
         }
