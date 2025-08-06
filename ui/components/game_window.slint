@@ -14,8 +14,8 @@ export component Game_window inherits Rectangle {
     property <bool> is_jumping: false;
     property <int> frame: 0;
     property <bool> jump_triggered: false;
+    property <bool> game_over: false;
 
-    //
     property <length> ground_y: 480px * 0.55;
     property <length> jump_y: 480px * 0.05;
 
@@ -74,7 +74,30 @@ export component Game_window inherits Rectangle {
                     }
                 }
 
-                MainCharacter {
+                Text {
+                    text: "¡¡Has muerto!!";
+                    visible: root.game_over;
+                    color: red;
+                    font-size: 40px * scale;
+                    font-family: "Minecraft";
+                    horizontal-alignment: center;
+                    vertical-alignment: center;
+                    width: parent.width;
+                    height: parent.height;
+                }
+
+                Timer {
+                    interval: 16ms;
+                    running: true;
+                    triggered => {
+                        if (!root.game_over && main_char.x < enemy.x + enemy.width && main_char.x + main_char.width > enemy.x && main_char.y < enemy.y + enemy.height && main_char.y + main_char.height > enemy.y) {
+                            root.game_over = true;
+                        }
+                    }
+                }
+
+                
+                main_char := MainCharacter {
                     scale: root.scale * 1.2;
                     frame: root.frame;
                     ground_y: root.ground_y;
@@ -83,7 +106,7 @@ export component Game_window inherits Rectangle {
                     jump_triggered <=> root.jump_triggered;
                 }
 
-                Enemy {
+                enemy := Enemy {
                     speed: 1.5;
                     scale: root.scale;
                     position_x: parent.width / 1px;

@@ -11,10 +11,13 @@ export component MainCharacter inherits Rectangle {
     in property <length> character_height: 100px;
     in property <length> character_width: 100px;
 
-    width: 100px * scale;
+    width: 55px * scale;
     height: 100px * scale;
     y: is_jumping ? jump_y * scale : ground_y * scale;
-    x: root.width * 0.05;
+    x: root.width * 2;
+
+    border-color: red;
+    border-width: 2px * scale;
 
     animate y {
         duration: 480ms;

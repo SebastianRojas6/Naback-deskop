@@ -3,12 +3,14 @@ export component Enemy inherits Rectangle {
     in property <float> scale: 1.0;
 
     in-out property <float> position_x: 0.0;
-    
     x: position_x * 1px;
 
     width: 60px * scale;
     height: 40px * scale;
     background: transparent;
+
+    border-color: blue;    
+    border-width: 2px * scale;
 
     Rectangle {
         Image {
@@ -20,7 +22,7 @@ export component Enemy inherits Rectangle {
 
     // Movimiento automático
     Timer {
-        interval: 16ms; 
+        interval: 16ms;
         running: true;
         triggered => {
             position_x -= speed * 2;
