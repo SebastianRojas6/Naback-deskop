@@ -47,25 +47,24 @@ export component MainWrapper inherits Window {
         }
     }
 
-    Game {
-        width: parent.width;
-        height: parent.height;
-        visible: root.current_page == 2;
-        
-        // propiedades
-        score: root.score;
-        time: root.time;
-        go_to_photos => {
-            root.current_page = 1;
-        }
+    if (root.current_page == 2) : Game {
+            width: parent.width;
+            height: parent.height;
 
-        go_to_cards => {
-            root.current_page = 3;
-        }
+            score: root.score;
+            time: root.time;
 
-        go_to_home => {
-            root.current_page = 0;
-        }
+            go_to_photos => {
+                root.current_page = 1;
+            }
+
+            go_to_cards => {
+                root.current_page = 3;
+            }
+
+            go_to_home => {
+                root.current_page = 0;
+            }
     }
 
     Cards {
