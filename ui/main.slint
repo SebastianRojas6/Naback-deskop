@@ -10,6 +10,7 @@ export component MainWrapper inherits Window {
     in-out property <int> current_page: 0;
     in-out property <int> score: 0;
     in-out property <int> time: 0;
+    in-out property <bool> game_over: false;
 
     callback navigate_to_game_with_instance;
 
@@ -54,7 +55,6 @@ export component MainWrapper inherits Window {
         // propiedades
         score: root.score;
         time: root.time;
-        
         go_to_photos => {
             root.current_page = 1;
         }

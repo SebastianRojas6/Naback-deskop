@@ -3,6 +3,8 @@ export component Enemy inherits Rectangle {
     in property <float> scale: 1.0;
 
     in-out property <float> position_x: 0.0;
+    in property <bool> game_over: false;   
+
     x: position_x * 1px;
 
     width: 60px * scale;
@@ -20,10 +22,9 @@ export component Enemy inherits Rectangle {
         }
     }
 
-    // Movimiento automático
     Timer {
         interval: 16ms;
-        running: true;
+        running: !root.game_over;  
         triggered => {
             position_x -= speed * 2;
         }

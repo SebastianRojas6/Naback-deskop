@@ -14,6 +14,8 @@ export component MainCharacter inherits Rectangle {
     in property <length> character_height: 100px;
     in property <length> character_width: 100px;
 
+    in property <bool> game_over: false;
+
     width: 55px * scale;
     height: 100px * scale;
     y: is_jumping ? jump_y * scale : ground_y * scale;
@@ -31,7 +33,7 @@ export component MainCharacter inherits Rectangle {
         interval: 20ms;
         running: true;
         triggered => {
-        if (root.is_jumping && Math.abs(root.y - (root.jump_y * root.scale)) < 1px) {
+            if (root.is_jumping && Math.abs(root.y - (root.jump_y * root.scale)) < 1px) {
                 root.is_jumping = false;
             }
         }
@@ -62,7 +64,7 @@ export component MainCharacter inherits Rectangle {
 
     my-key-handler := FocusScope {
         key-pressed(event) => {
-            if (event.text == " " && !root.is_jumping && !root.jump_triggered && Math.abs(root.y - (root.ground_y * root.scale)) < 2px) {
+            if (event.text == " " && !root.game_over && !root.is_jumping && !root.jump_triggered && Math.abs(root.y - (root.ground_y * root.scale)) < 2px) {
                 root.is_jumping = true;
                 root.jump_triggered = true;
             }

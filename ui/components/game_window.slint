@@ -2,25 +2,21 @@ import { Enemy } from "enemy.slint";
 import { MainCharacter } from "main_character.slint";
 
 export component Game_window inherits Rectangle {
-    
-    //propieaded exportables para el back
     in-out property <int> score: 0;
     in-out property <int> time: 0;
 
     in property <length> available_width;
     in property <float> scale: 1.0;
 
-    //game 
     property <bool> is_jumping: false;
     property <int> frame: 0;
     property <bool> jump_triggered: false;
-    property <bool> game_over: false;
+    in-out property <bool> game_over: false;
 
     property <length> ground_y: 480px * 0.55;
     property <length> jump_y: 480px * 0.05;
 
     VerticalLayout {
-
         alignment: center;
 
         HorizontalLayout {
@@ -68,7 +64,7 @@ export component Game_window inherits Rectangle {
 
                 Timer {
                     interval: 600ms;
-                    running: true;
+                    running: !root.game_over;
                     triggered => {
                         frame = Math.mod(frame + 1, 2);
                     }
@@ -88,7 +84,7 @@ export component Game_window inherits Rectangle {
 
                 Timer {
                     interval: 16ms;
-                    running: true;
+                    running: !root.game_over;
                     triggered => {
                         if (!root.game_over && main_char.x < enemy.x + enemy.width && main_char.x + main_char.width > enemy.x && main_char.y < enemy.y + enemy.height && main_char.y + main_char.height > enemy.y) {
                             root.game_over = true;
@@ -96,12 +92,12 @@ export component Game_window inherits Rectangle {
                     }
                 }
 
-                
                 main_char := MainCharacter {
                     scale: root.scale * 1.2;
                     frame: root.frame;
                     ground_y: root.ground_y;
                     jump_y: root.jump_y;
+                    game_over <=> root.game_over;
                     is_jumping <=> root.is_jumping;
                     jump_triggered <=> root.jump_triggered;
                 }
@@ -110,6 +106,7 @@ export component Game_window inherits Rectangle {
                     speed: 1.5;
                     scale: root.scale;
                     position_x: parent.width / 1px;
+                    game_over <=> root.game_over;
                     y: parent.height - self.height * 2;
                 }
             }
