@@ -11,8 +11,12 @@ export component MainWrapper inherits Window {
     in-out property <int> score: 0;
     in-out property <int> time: 0;
     in-out property <bool> game_over: false;
+    in-out property <int> enemy_count: 0;
 
     callback navigate_to_game_with_instance;
+    callback spawn_enemy();
+
+    spawn_enemy => { root.enemy_count += 1; }
 
     Menu {
         width: parent.width;
@@ -25,6 +29,7 @@ export component MainWrapper inherits Window {
         go_to_game => {
             root.current_page = 2;
             root.navigate_to_game_with_instance();
+            root.spawn_enemy();
         }
 
         go_to_cards => {
@@ -40,6 +45,7 @@ export component MainWrapper inherits Window {
         go_to_game => {
             root.current_page = 2;
             root.navigate_to_game_with_instance();
+            root.spawn_enemy();
         }
 
         go_to_home => {
@@ -47,24 +53,27 @@ export component MainWrapper inherits Window {
         }
     }
 
-    if (root.current_page == 2) : Game {
-            width: parent.width;
-            height: parent.height;
+    if (root.current_page == 2): Game {
+        width: parent.width;
+        height: parent.height;
 
-            score: root.score;
-            time: root.time;
+        score: root.score;
+        time: root.time;
+        
+        enemy_count <=> root.enemy_count;
+        spawn_enemy => {root.spawn_enemy();}
 
-            go_to_photos => {
-                root.current_page = 1;
-            }
+        go_to_photos => {
+            root.current_page = 1;
+        }
 
-            go_to_cards => {
-                root.current_page = 3;
-            }
+        go_to_cards => {
+            root.current_page = 3;
+        }
 
-            go_to_home => {
-                root.current_page = 0;
-            }
+        go_to_home => {
+            root.current_page = 0;
+        }
     }
 
     Cards {
@@ -75,6 +84,7 @@ export component MainWrapper inherits Window {
         go_to_game => {
             root.current_page = 2;
             root.navigate_to_game_with_instance();
+            root.spawn_enemy();
         }
 
         go_to_home => {

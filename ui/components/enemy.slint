@@ -3,7 +3,7 @@ export component Enemy inherits Rectangle {
     in property <float> scale: 1.0;
 
     in-out property <float> position_x: 0.0;
-    in property <bool> game_over: false;   
+    in property <bool> game_over: false;
 
     x: position_x * 1px;
 
@@ -11,7 +11,7 @@ export component Enemy inherits Rectangle {
     height: 40px * scale;
     background: transparent;
 
-    border-color: blue;    
+    border-color: blue;
     border-width: 2px * scale;
 
     Rectangle {
@@ -24,9 +24,13 @@ export component Enemy inherits Rectangle {
 
     Timer {
         interval: 16ms;
-        running: !root.game_over;  
+        running: !root.game_over;
         triggered => {
             position_x -= speed * 2;
+
+            if (position_x < -(root.width / 1px)) {
+                position_x = (parent.width / 1px) + (root.width / 1px);
+            }
         }
     }
 }
