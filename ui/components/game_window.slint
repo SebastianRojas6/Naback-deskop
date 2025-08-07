@@ -24,7 +24,11 @@ export component Game_window inherits Rectangle {
 
     in-out property <[float]> enemy_positions: [];
 
-    callback set_enemy_positions([float]);
+    callback set_enemy_positions(pos: [float]);
+    
+    set_enemy_positions(pos) => {
+        root.enemy_positions = pos;
+    }
 
     callback spawn_enemy();
 
@@ -94,16 +98,6 @@ export component Game_window inherits Rectangle {
                     height: parent.height;
                 }
 
-                Timer {
-                    interval: 16ms;
-                    running: !root.game_over;
-                    triggered => {
-                        if (!root.game_over && main_char.x < enemy.x + enemy.width && main_char.x + main_char.width > enemy.x && main_char.y < enemy.y + enemy.height && main_char.y + main_char.height > enemy.y) {
-                            root.game_over = true;
-                        }
-                    }
-                }
-
                 main_char := MainCharacter {
                     scale: root.scale * 1.2;
                     frame: root.frame;
@@ -112,14 +106,6 @@ export component Game_window inherits Rectangle {
                     game_over <=> root.game_over;
                     is_jumping <=> root.is_jumping;
                     jump_triggered <=> root.jump_triggered;
-                }
-
-                enemy := Enemy {
-                    speed: 1.5;
-                    scale: root.scale;
-                    position_x: (parent.width - self.width) / 1px;
-                    game_over <=> root.game_over;
-                    y: parent.height - self.height * 2;
                 }
 
                 for pos in enemy_positions: enemy_item := Enemy {

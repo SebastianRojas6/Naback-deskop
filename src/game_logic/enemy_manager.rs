@@ -7,7 +7,6 @@ use std::sync::{Arc, Mutex};
 pub fn start_enemy_manager(main_weak: Weak<MainWrapper>) -> Arc<Mutex<Vec<f32>>> {
     let positions = Arc::new(Mutex::new(Vec::<f32>::new()));
 
-    // ---------- hilo para mover enemigos ----------
     {
         let positions_clone = positions.clone();
         let main_weak_clone = main_weak.clone();
@@ -34,7 +33,6 @@ pub fn start_enemy_manager(main_weak: Weak<MainWrapper>) -> Arc<Mutex<Vec<f32>>>
         });
     }
 
-    // ---------- hilo para spawnear enemigos ----------
     {
         let positions_clone = positions.clone();
         std::thread::spawn(move || {
@@ -47,7 +45,5 @@ pub fn start_enemy_manager(main_weak: Weak<MainWrapper>) -> Arc<Mutex<Vec<f32>>>
             }
         });
     }
-
-    // seguimos teniendo ownership de `positions`
     positions
 }

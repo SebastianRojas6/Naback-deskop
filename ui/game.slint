@@ -8,7 +8,6 @@ export component Game inherits Background {
     in-out property <int> time: 0;
     in-out property <int> enemy_count: 0;
     in-out property <[float]> enemy_positions: [];
-    
     in-out property <float> main_char_x;
     in-out property <float> main_char_y;
     in-out property <float> main_char_w;
@@ -18,6 +17,7 @@ export component Game inherits Background {
     callback go_to_photos();
     callback go_to_home();
     callback spawn_enemy();
+
     callback set_enemy_positions([float]);
 
     ArrowHeader {
@@ -51,5 +51,9 @@ export component Game inherits Background {
         available_width: root.width * 0.95;
         enemy_count <=> root.enemy_count;
         enemy_positions <=> root.enemy_positions;
+
+        set_enemy_positions(pos) => {
+            root.enemy_positions = pos;
+        }
     }
 }
