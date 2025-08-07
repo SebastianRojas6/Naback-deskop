@@ -11,20 +11,16 @@
   <p align="center">
     A desktop application created for learning purposes, built with Rust and slint.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://docs.slint.dev/latest/docs/slint/"><strong>Explore the Slint world »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/SebastianRojas6/Naback-deskop">View Demo</a>&middot;
+    <a href="https://github.com/SebastianRojas6/Naback-deskop/issues/new?labels=bug&template=bug_report.md">Report Bug</a>&middot;
+    <a href="https://github.com/SebastianRojas6/Naback-deskop/issues/new?labels=enhancement&template=feature_request.md">Request Feature</a>
+
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -42,11 +38,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -68,7 +60,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 This project was built entirely with:
 
-[![Rust][Rust-lang]][Rust-url]
+[![Rust][Rust-lang]][Rust-url] 
 [![Slint][Slint.dev]][Slint-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
