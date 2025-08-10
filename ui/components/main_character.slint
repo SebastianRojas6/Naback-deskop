@@ -18,7 +18,6 @@ export component MainCharacter inherits Rectangle {
     in-out property <float> main_char_y;
     in-out property <float> main_char_w;
     in-out property <float> main_char_h;
-    
     in property <bool> game_over: false;
 
     width: 55px * scale;
@@ -83,4 +82,9 @@ export component MainCharacter inherits Rectangle {
             accept
         }
     }
+
+    main_char_x: root.x / 1px;
+    main_char_y: root.y / 1px;
+    main_char_w: root.width / 1px;
+    main_char_h: root.height / 1px;
 }

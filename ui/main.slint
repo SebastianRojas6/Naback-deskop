@@ -68,8 +68,13 @@ export component MainWrapper inherits Window {
         score: root.score;
         time: root.time;
         enemy_count <=> root.enemy_count;
-
+        game_over <=> root.game_over;
         enemy_positions <=> root.enemy_positions;
+
+        main_char_x <=> root.main_char_x;
+        main_char_y <=> root.main_char_y;
+        main_char_w <=> root.main_char_w;
+        main_char_h <=> root.main_char_h;
 
         go_to_photos => {
             root.current_page = 1;

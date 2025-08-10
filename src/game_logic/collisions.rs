@@ -1,6 +1,5 @@
 use crate::MainWrapper;
-use slint::Weak;
-use slint::invoke_from_event_loop;
+use slint::{Weak, invoke_from_event_loop};
 use std::sync::{Arc, Mutex};
 
 pub fn start_collision_checker(
@@ -9,7 +8,10 @@ pub fn start_collision_checker(
 ) {
     std::thread::spawn(move || {
         loop {
-            let enemies = enemy_positions.lock().unwrap().clone();
+            let enemies = {
+                let guard = enemy_positions.lock().unwrap();
+                guard.clone()
+            };
 
             let w = main_weak.clone();
             invoke_from_event_loop(move || {
@@ -20,13 +22,14 @@ pub fn start_collision_checker(
                     let ph = main.get_main_char_h();
 
                     let mut collided = false;
-                    for ex in &enemies {
+
+                    for &ex in enemies.iter() {
                         let enemy_w = 60.0f32;
                         let enemy_h = 60.0f32;
                         let enemy_y = py; 
 
                         if px < ex + enemy_w
-                            && px + pw > *ex
+                            && px + pw > ex
                             && py < enemy_y + enemy_h
                             && py + ph > enemy_y
                         {
@@ -34,6 +37,7 @@ pub fn start_collision_checker(
                             break;
                         }
                     }
+
                     main.set_game_over(collided);
                 }
             }).ok();

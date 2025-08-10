@@ -25,7 +25,6 @@ export component Game_window inherits Rectangle {
     in-out property <[float]> enemy_positions: [];
 
     callback set_enemy_positions(pos: [float]);
-    
     set_enemy_positions(pos) => {
         root.enemy_positions = pos;
     }
@@ -106,6 +105,11 @@ export component Game_window inherits Rectangle {
                     game_over <=> root.game_over;
                     is_jumping <=> root.is_jumping;
                     jump_triggered <=> root.jump_triggered;
+
+                    main_char_x <=> root.main_char_x;
+                    main_char_y <=> root.main_char_y;
+                    main_char_w <=> root.main_char_w;
+                    main_char_h <=> root.main_char_h;
                 }
 
                 for pos in enemy_positions: enemy_item := Enemy {
