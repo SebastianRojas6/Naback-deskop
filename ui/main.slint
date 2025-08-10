@@ -17,9 +17,14 @@ export component MainWrapper inherits Window {
     in-out property <float> main_char_y;
     in-out property <float> main_char_w;
     in-out property <float> main_char_h;
+    in-out property <[float]> enemy_positions: [];
 
     callback navigate_to_game_with_instance;
-    callback set_enemy_positions(pos : [float]);
+    callback set_enemy_positions(pos: [float]);
+
+    set_enemy_positions(pos) => {
+        root.enemy_positions = pos;
+    }
 
     Menu {
         width: parent.width;
@@ -64,9 +69,7 @@ export component MainWrapper inherits Window {
         time: root.time;
         enemy_count <=> root.enemy_count;
 
-        set_enemy_positions(pos) => {
-            game.enemy_positions = pos;
-        }
+        enemy_positions <=> root.enemy_positions;
 
         go_to_photos => {
             root.current_page = 1;

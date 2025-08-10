@@ -17,13 +17,13 @@ pub fn start_enemy_manager(main_weak: Weak<MainWrapper>) -> Arc<Mutex<Vec<f32>>>
                     v.iter_mut().for_each(|x| *x -= 3.0);
                     v.retain(|x| *x > -200.0);
                 }
-
+                
                 let to_send = { positions_clone.lock().unwrap().clone() };
 
                 let w = main_weak_clone.clone();
                 let _ = invoke_from_event_loop(move || {
                     if let Some(main) = w.upgrade() {
-                        let model = ModelRc::new(VecModel::from(to_send));
+                        let model = ModelRc::new(VecModel::from(to_send.clone()));
                         main.invoke_set_enemy_positions(model);
                     }
                 });

@@ -18,7 +18,7 @@ export component Game inherits Background {
     callback go_to_home();
     callback spawn_enemy();
 
-    callback set_enemy_positions([float]);
+    callback set_enemy_positions(pos : [float]);
 
     ArrowHeader {
         y: root.height * 0.019;
