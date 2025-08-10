@@ -17,6 +17,18 @@ export component Game_window inherits Rectangle {
     property <length> ground_y: 480px * 0.55;
     property <length> jump_y: 480px * 0.05;
 
+    in-out property <float> main_char_x;
+    in-out property <float> main_char_y;
+    in-out property <float> main_char_w;
+    in-out property <float> main_char_h;
+
+    in-out property <[float]> enemy_positions: [];
+
+    callback set_enemy_positions(pos: [float]);
+    set_enemy_positions(pos) => {
+        root.enemy_positions = pos;
+    }
+
     callback spawn_enemy();
 
     VerticalLayout {
@@ -85,16 +97,6 @@ export component Game_window inherits Rectangle {
                     height: parent.height;
                 }
 
-                Timer {
-                    interval: 16ms;
-                    running: !root.game_over;
-                    triggered => {
-                        if (!root.game_over && main_char.x < enemy.x + enemy.width && main_char.x + main_char.width > enemy.x && main_char.y < enemy.y + enemy.height && main_char.y + main_char.height > enemy.y) {
-                            root.game_over = true;
-                        }
-                    }
-                }
-
                 main_char := MainCharacter {
                     scale: root.scale * 1.2;
                     frame: root.frame;
@@ -103,23 +105,18 @@ export component Game_window inherits Rectangle {
                     game_over <=> root.game_over;
                     is_jumping <=> root.is_jumping;
                     jump_triggered <=> root.jump_triggered;
+
+                    main_char_x <=> root.main_char_x;
+                    main_char_y <=> root.main_char_y;
+                    main_char_w <=> root.main_char_w;
+                    main_char_h <=> root.main_char_h;
                 }
 
-                enemy := Enemy {
-                    speed: 1.5;
-                    scale: root.scale;
-                    position_x: parent.width / 1px;
+                for pos in enemy_positions: enemy_item := Enemy {
+                    position_x: pos;
                     game_over <=> root.game_over;
                     y: parent.height - self.height * 2;
-                }
-
-                for _idx in enemy_count - 1:  
-                    enemy_item := Enemy {
-                    speed: 1.5;
                     scale: root.scale;
-                    position_x: parent.width / 1px;
-                    game_over <=> root.game_over;
-                    y: parent.height - self.height * 2;
                 }
             }
         }

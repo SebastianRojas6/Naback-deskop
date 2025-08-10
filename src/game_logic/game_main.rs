@@ -1,8 +1,8 @@
+use super::collisions::start_collision_checker;
+use super::enemy_manager::start_enemy_manager;
+use super::timer::time;
 use crate::MainWrapper;
 use slint::{Weak, invoke_from_event_loop};
-
-use super::generate_enemies::generate_enemies;
-use super::timer::time;
 
 pub fn game(main_weak: Weak<MainWrapper>) {
     {
@@ -36,5 +36,6 @@ pub fn game(main_weak: Weak<MainWrapper>) {
         });
     }
 
-    generate_enemies(main_weak.clone());
+    let positions = start_enemy_manager(main_weak.clone());
+    start_collision_checker(main_weak.clone(), positions);
 }
