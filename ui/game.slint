@@ -4,15 +4,19 @@ import { Home_button } from "components/home.slint";
 import { Game_window } from "components/game_window.slint";
 
 export component Game inherits Background {
+    
     in-out property <int> score: 0;
     in-out property <int> time: 0;
     in-out property <int> enemy_count: 0;
-    in-out property <[float]> enemy_positions: [];
+
+    in-out property <bool> game_over: false;
+
     in-out property <float> main_char_x;
     in-out property <float> main_char_y;
     in-out property <float> main_char_w;
     in-out property <float> main_char_h;
-    in-out property <bool> game_over: false;
+
+    in-out property <[float]> enemy_positions: [];
 
     callback go_to_cards();
     callback go_to_photos();
@@ -52,10 +56,12 @@ export component Game inherits Background {
         available_width: root.width * 0.95;
         enemy_count <=> root.enemy_count;
         enemy_positions <=> root.enemy_positions;
+        
         main_char_x <=> root.main_char_x;
         main_char_y <=> root.main_char_y;
         main_char_w <=> root.main_char_w;
         main_char_h <=> root.main_char_h;
+
         set_enemy_positions(pos) => {
             root.enemy_positions = pos;
         }

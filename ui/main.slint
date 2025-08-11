@@ -10,13 +10,15 @@ export component MainWrapper inherits Window {
     in-out property <int> current_page: 0;
     in-out property <int> score: 0;
     in-out property <int> time: 0;
-    in-out property <bool> game_over: false;
     in-out property <int> enemy_count: 0;
 
+    in-out property <bool> game_over: false;
+    
     in-out property <float> main_char_x;
     in-out property <float> main_char_y;
     in-out property <float> main_char_w;
     in-out property <float> main_char_h;
+    
     in-out property <[float]> enemy_positions: [];
 
     callback navigate_to_game_with_instance;
